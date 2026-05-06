@@ -4,8 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NWA Car Events</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>NWA Car Events</h1>
+
+    <nav>
+        <span class="logo">NWA Car Events</span>
+        <ul>
+            <li><a href="/">Events</a></li>
+            <li><a href="/calendar">Calendar</a></li>
+            <li><a href="#">Submit Event</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>Your <span>NWA</span> Car Event Hub</h1>
+        <p>Find local car meets, shows, and cruises happening across Northwest Arkansas — all in one place.</p>
+        <a href="#" class="btn">Browse Events</a>
+    </section>
+
+    <section class="events-section">
+        <h2>Upcoming Events</h2>
+        <div class="events-grid">
+            <div class="event-card">
+                <div class="event-type">Cars & Coffee</div>
+                <h3>Bentonville Cars & Coffee</h3>
+                <div class="event-meta">May 10 · 8:00 AM · Bentonville Square</div>
+            </div>
+            <div class="event-card">
+                <div class="event-type">Car Show</div>
+                <h3>NWA Spring Car Show</h3>
+                <div class="event-meta">May 17 · 10:00 AM · Rogers, AR</div>
+            </div>
+            <div class="event-card">
+                <div class="event-type">Cruise</div>
+                <h3>Saturday Night Cruise</h3>
+                <div class="event-meta">May 11 · 7:00 PM · Fayetteville, AR</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Built for the NWA car community &nbsp;·&nbsp; <a href="https://instagram.com/project.nwacar.media" target="_blank">@project.nwacar.media</a></p>
+    </footer>
+
 </body>
 </html>
