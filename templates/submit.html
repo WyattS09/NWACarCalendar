@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Event · NWA Car Events</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/submit.css') }}">
+</head>
+<body>
+
+    <nav>
+        <span class="logo">NWA Car Events</span>
+        <ul>
+            <li><a href="/">Events</a></li>
+            <li><a href="/calendar">Calendar</a></li>
+            <li><a href="/submit">Submit Event</a></li>
+        </ul>
+    </nav>
+
+    <div class="submit-container">
+        <h1>Submit an Event</h1>
+        <p class="submit-subtext">Fill out the form below and we'll review your event before it goes live.</p>
+
+        <form action="/submit" method="POST" enctype="multipart/form-data">
+
+            <div class="form-section">
+                <h2>Event Details</h2>
+
+                <div class="form-group">
+                    <label for="title">Event Name *</label>
+                    <input type="text" id="title" name="title" required placeholder="e.g. Bentonville Cars & Coffee">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="event_type">Event Type *</label>
+                        <select id="event_type" name="event_type" required>
+                            <option value="" disabled selected>Select a type</option>
+                            <option value="Cars & Coffee">Cars & Coffee</option>
+                            <option value="Car Show">Car Show</option>
+                            <option value="Cruise">Cruise</option>
+                            <option value="Track Day">Track Day</option>
+                            <option value="Meet">Meet</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Date *</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">Time *</label>
+                        <input type="time" id="time" name="time" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location *</label>
+                    <input type="text" id="location" name="location" required placeholder="e.g. Bentonville Square, Bentonville AR">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description <span class="optional">(optional)</span></label>
+                    <textarea id="description" name="description" rows="4" placeholder="Tell people what to expect..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="instagram">Instagram Handle <span class="optional">(optional)</span></label>
+                    <div class="input-prefix">
+                        <span>@</span>
+                        <input type="text" id="instagram" name="instagram" placeholder="youraccount">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Event Card</h2>
+                <p class="section-subtext">How would you like your event card to look?</p>
+
+                <div class="card-options">
+                    <label class="card-option">
+                        <input type="radio" name="card_option" value="own_card" required>
+                        <div class="card-option-content">
+                            <span class="card-option-title">I have my own event card</span>
+                            <span class="card-option-desc">Upload your finished graphic and we'll display it as-is.</span>
+                        </div>
+                    </label>
+
+                    <label class="card-option">
+                        <input type="radio" name="card_option" value="own_image">
+                        <div class="card-option-content">
+                            <span class="card-option-title">I have an image, make the card</span>
+                            <span class="card-option-desc">Upload a photo and we'll design the event card for you.</span>
+                        </div>
+                    </label>
+
+                    <label class="card-option">
+                        <input type="radio" name="card_option" value="no_image">
+                        <div class="card-option-content">
+                            <span class="card-option-title">Just use the information</span>
+                            <span class="card-option-desc">We'll pick a photo and design the card for you.</span>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="form-group" id="imageUploadGroup" style="display:none;">
+                    <label for="image">Upload Image</label>
+                    <input type="file" id="image" name="image" accept="image/*">
+                </div>
+            </div>
+
+            <button type="submit" class="btn submit-btn">Submit Event</button>
+
+        </form>
+    </div>
+
+    <footer>
+        <p>Built for the NWA car community &nbsp;·&nbsp; <a href="https://instagram.com/project.nwacar.media" target="_blank">@project.nwacar.media</a></p>
+    </footer>
+
+    <script>
+        const radios = document.querySelectorAll('input[name="card_option"]');
+        const imageGroup = document.getElementById('imageUploadGroup');
+
+        radios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.value === 'own_card' || radio.value === 'own_image') {
+                    imageGroup.style.display = 'block';
+                } else {
+                    imageGroup.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

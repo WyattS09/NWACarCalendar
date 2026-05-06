@@ -1,0 +1,170 @@
+.submit-container {
+    max-width: 720px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.submit-container h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.4rem;
+}
+
+.submit-subtext {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+.form-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-section h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.section-subtext {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: -0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+    color: var(--text-primary);
+}
+
+.optional {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.6rem 0.85rem;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.form-group select option {
+    background: var(--bg-secondary);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 1rem;
+}
+
+.input-prefix {
+    display: flex;
+    align-items: center;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+
+.input-prefix:focus-within {
+    border-color: var(--accent);
+}
+
+.input-prefix span {
+    padding: 0.6rem 0.75rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    border-right: 1px solid var(--border);
+}
+
+.input-prefix input {
+    border: none;
+    border-radius: 0;
+    background: transparent;
+}
+
+.input-prefix input:focus {
+    border: none;
+    outline: none;
+}
+
+.card-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.card-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.card-option:hover {
+    border-color: var(--accent);
+}
+
+.card-option input[type="radio"] {
+    width: auto;
+    margin-top: 0.2rem;
+    accent-color: var(--accent);
+}
+
+.card-option-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.card-option-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.card-option-desc {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 0.85rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+}
