@@ -54,7 +54,9 @@
         <p>Built for the NWA car community &nbsp;·&nbsp; <a href="https://instagram.com/project.nwacar.media" target="_blank">@project.nwacar.media</a></p>
     </footer>
 
+    <script>
+        const events = {{ events | tojson }};
+    </script>
     <script src="{{ url_for('static', filename='js/calendar.js') }}"></script>
-
 </body>
 </html>

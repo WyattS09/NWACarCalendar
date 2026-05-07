@@ -1,39 +1,9 @@
-const events = [
-    {
-        id: 1,
-        title: "Bentonville Cars & Coffee",
-        type: "Cars & Coffee",
-        date: "2026-05-10",
-        time: "8:00 AM",
-        location: "Bentonville Square",
-        description: "Monthly cars and coffee meetup at the Bentonville Square. All makes and models welcome."
-    },
-    {
-        id: 2,
-        title: "NWA Spring Car Show",
-        type: "Car Show",
-        date: "2026-05-17",
-        time: "10:00 AM",
-        location: "Rogers, AR",
-        description: "Annual spring car show featuring vehicles from across Northwest Arkansas."
-    },
-    {
-        id: 3,
-        title: "Saturday Night Cruise",
-        type: "Cruise",
-        date: "2026-05-11",
-        time: "7:00 PM",
-        location: "Fayetteville, AR",
-        description: "Casual evening cruise through Fayetteville. Meet at the Walmart AMP parking lot."
-    }
-];
+const dayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const monthNames = ["January","February","March","April","May","June",
+                    "July","August","September","October","November","December"];
 
 let currentDate = new Date();
 let currentView = "month";
-
-const monthNames = ["January","February","March","April","May","June",
-                    "July","August","September","October","November","December"];
-const dayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
 function getEventsForDate(dateStr) {
     return events.filter(e => e.date === dateStr);
@@ -140,10 +110,10 @@ function render() {
 function openPopup(id) {
     const e = events.find(ev => ev.id === id);
     if (!e) return;
-    document.getElementById("popupType").textContent = e.type;
+    document.getElementById("popupType").textContent = e.event_type;
     document.getElementById("popupTitle").textContent = e.title;
     document.getElementById("popupMeta").textContent = `${e.date} · ${e.time} · ${e.location}`;
-    document.getElementById("popupDesc").textContent = e.description;
+    document.getElementById("popupDesc").textContent = e.description || '';
     document.getElementById("popupOverlay").classList.add("active");
 }
 

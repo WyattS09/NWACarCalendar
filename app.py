@@ -53,7 +53,20 @@ def home():
 @app.route("/calendar")
 def calendar():
     approved_events = Event.query.filter_by(approved=True).all()
-    return render_template("calendar.html", events=approved_events)
+    events_list = [
+        {
+            "id": e.id,
+            "title": e.title,
+            "event_type": e.event_type,
+            "date": e.date,
+            "time": e.time,
+            "location": e.location,
+            "description": e.description or "",
+            "instagram": e.instagram or ""
+        }
+        for e in approved_events
+    ]
+    return render_template("calendar.html", events=events_list)
 
 @app.route("/submit", methods=["GET", "POST"])
 def submit():

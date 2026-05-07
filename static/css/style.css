@@ -108,6 +108,12 @@ nav ul li a:hover {
     margin: 0 auto;
 }
 
+.event-desc-preview {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+}
+
 .events-section h2 {
     font-size: 1.6rem;
     margin-bottom: 1.5rem;

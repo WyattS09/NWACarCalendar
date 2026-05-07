@@ -26,21 +26,20 @@
     <section class="events-section">
         <h2>Upcoming Events</h2>
         <div class="events-grid">
-            <div class="event-card">
-                <div class="event-type">Cars & Coffee</div>
-                <h3>Bentonville Cars & Coffee</h3>
-                <div class="event-meta">May 10 · 8:00 AM · Bentonville Square</div>
-            </div>
-            <div class="event-card">
-                <div class="event-type">Car Show</div>
-                <h3>NWA Spring Car Show</h3>
-                <div class="event-meta">May 17 · 10:00 AM · Rogers, AR</div>
-            </div>
-            <div class="event-card">
-                <div class="event-type">Cruise</div>
-                <h3>Saturday Night Cruise</h3>
-                <div class="event-meta">May 11 · 7:00 PM · Fayetteville, AR</div>
-            </div>
+            {% if events %}
+                {% for event in events %}
+                <div class="event-card">
+                    <div class="event-type">{{ event.event_type }}</div>
+                    <h3>{{ event.title }}</h3>
+                    <div class="event-meta">{{ event.date }} · {{ event.time }} · {{ event.location }}</div>
+                    {% if event.description %}
+                    <p class="event-desc-preview">{{ event.description }}</p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            {% else %}
+                <p style="color:var(--text-secondary);">No upcoming events yet. Check back soon.</p>
+            {% endif %}
         </div>
     </section>
 
