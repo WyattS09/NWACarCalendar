@@ -1,3 +1,5 @@
+from dotenv import load_dotenv
+load_dotenv()
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -39,7 +41,7 @@ def send_notification(event_title):
         msg['From'] = sender
         msg['To'] = recipient
 
-        with smtplib.SMTP_SSL('wyatt.schraeder@gmail.com', 465) as server:
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
             server.login(sender, password)
             server.sendmail(sender, recipient, msg.as_string())
     except Exception as e:
