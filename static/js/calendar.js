@@ -114,6 +114,7 @@ function openPopup(id) {
     document.getElementById("popupTitle").textContent = e.title;
     document.getElementById("popupMeta").textContent = `${e.date} · ${e.time} · ${e.location}`;
     document.getElementById("popupDesc").textContent = e.description || '';
+    document.getElementById("popupLink").href = `/event/${e.id}`;
     document.getElementById("popupOverlay").classList.add("active");
 }
 

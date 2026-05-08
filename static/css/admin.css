@@ -130,3 +130,43 @@
     color: var(--text-secondary);
     font-size: 0.9rem;
 }
+
+.download-btn {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    font-size: 0.85rem;
+    padding: 0.4rem 1rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.download-btn:hover {
+    background: var(--border);
+    color: var(--text-primary);
+}
+
+.upload-form {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+.upload-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.upload-row {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.upload-row input[type="file"] {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}

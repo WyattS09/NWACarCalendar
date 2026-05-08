@@ -106,6 +106,26 @@
                     </label>
                 </div>
 
+                <div class="form-group" id="designChoiceGroup" style="display:none;">
+                    <label>Card Design Style</label>
+                    <div class="card-options">
+                        <label class="card-option">
+                            <input type="radio" name="design_style" value="minimal">
+                            <div class="card-option-content">
+                                <span class="card-option-title">Minimal</span>
+                                <span class="card-option-desc">Full photo background with bold text overlay. Clean and simple.</span>
+                            </div>
+                        </label>
+                        <label class="card-option">
+                            <input type="radio" name="design_style" value="detailed">
+                            <div class="card-option-content">
+                                <span class="card-option-title">Detailed</span>
+                                <span class="card-option-desc">Photo on top with a structured info panel below showing all event details.</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
                 <div class="form-group" id="imageUploadGroup" style="display:none;">
                     <label for="image">Upload Image</label>
                     <input type="file" id="image" name="image" accept="image/*">
@@ -124,13 +144,19 @@
     <script>
         const radios = document.querySelectorAll('input[name="card_option"]');
         const imageGroup = document.getElementById('imageUploadGroup');
-
+        const designGroup = document.getElementById('designChoiceGroup');
+    
         radios.forEach(radio => {
             radio.addEventListener('change', () => {
-                if (radio.value === 'own_card' || radio.value === 'own_image') {
+                if (radio.value === 'own_card') {
                     imageGroup.style.display = 'block';
-                } else {
+                    designGroup.style.display = 'none';
+                } else if (radio.value === 'own_image') {
+                    imageGroup.style.display = 'block';
+                    designGroup.style.display = 'block';
+                } else if (radio.value === 'no_image') {
                     imageGroup.style.display = 'none';
+                    designGroup.style.display = 'block';
                 }
             });
         });

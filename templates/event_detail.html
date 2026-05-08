@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ event.title }} · NWA Car Events</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/event_detail.css') }}">
+</head>
+<body>
+
+    <nav>
+        <span class="logo">NWA Car Events</span>
+        <ul>
+            <li><a href="/">Events</a></li>
+            <li><a href="/calendar">Calendar</a></li>
+            <li><a href="/submit">Submit Event</a></li>
+        </ul>
+    </nav>
+
+    <div class="detail-container">
+
+        <a href="/calendar" class="back-link">← Back to Calendar</a>
+
+        {% if event.image_filename and (event.card_option == 'own_card' or event.card_option == 'own_image' or event.card_option == 'no_image') and event.image_filename.startswith('cards/') or event.card_option == 'own_card' and event.image_filename %}
+
+            {# Card exists — show only the image #}
+            <div class="card-only">
+                <img src="{{ url_for('static', filename='images/' + event.image_filename) }}" alt="{{ event.title }}">
+            </div>
+
+        {% else %}
+
+            {# No card yet — show event details #}
+            <div class="detail-card">
+
+                {% if event.image_filename and event.card_option == 'own_image' %}
+                <div class="detail-image">
+                    <img src="{{ url_for('static', filename='images/' + event.image_filename) }}" alt="{{ event.title }}">
+                </div>
+                {% endif %}
+
+                <div class="detail-content">
+                    <span class="event-type-label">{{ event.event_type }}</span>
+                    <h1>{{ event.title }}</h1>
+
+                    <div class="detail-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Date</span>
+                            <span>{{ event.date }}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Time</span>
+                            <span>{{ event.time }}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Location</span>
+                            <span>{{ event.location }}</span>
+                        </div>
+                        {% if event.instagram %}
+                        <div class="meta-item">
+                            <span class="meta-label">Instagram</span>
+                            <a href="https://instagram.com/{{ event.instagram }}" target="_blank">@{{ event.instagram }}</a>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    {% if event.description %}
+                    <p class="detail-desc">{{ event.description }}</p>
+                    {% endif %}
+
+                </div>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+    <footer>
+        <p>Built for the NWA car community &nbsp;·&nbsp; <a href="https://instagram.com/project.nwacar.media" target="_blank">@project.nwacar.media</a></p>
+    </footer>
+
+</body>
+</html>

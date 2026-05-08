@@ -22,6 +22,7 @@ class Event(db.Model):
     description = db.Column(db.Text, nullable=True)
     instagram = db.Column(db.String(60), nullable=True)
     card_option = db.Column(db.String(20), nullable=False)
+    design_style = db.Column(db.String(20), nullable=True)
     image_filename = db.Column(db.String(120), nullable=True)
     approved = db.Column(db.Boolean, default=False)
     submitted_at = db.Column(db.DateTime, default=datetime.utcnow)
@@ -62,7 +63,8 @@ def calendar():
             "time": e.time,
             "location": e.location,
             "description": e.description or "",
-            "instagram": e.instagram or ""
+            "instagram": e.instagram or "",
+            "image_filename": e.image_filename or ""
         }
         for e in approved_events
     ]
@@ -79,6 +81,7 @@ def submit():
         description = request.form.get("description")
         instagram = request.form.get("instagram")
         card_option = request.form.get("card_option")
+        design_style = request.form.get("design_style")
 
         image_filename = None
         image_file = request.files.get("image")
@@ -95,8 +98,10 @@ def submit():
             description=description,
             instagram=instagram,
             card_option=card_option,
+            design_style=design_style,
             image_filename=image_filename
         )
+
         db.session.add(new_event)
         db.session.commit()
 
@@ -108,6 +113,11 @@ def submit():
 @app.route("/submitted")
 def submitted():
     return render_template("submitted.html")
+
+@app.route("/event/<int:event_id>")
+def event_detail(event_id):
+    event = Event.query.get_or_404(event_id)
+    return render_template("event_detail.html", event=event)
 
 @app.route("/admin/review")
 def admin_review():
@@ -133,3 +143,25 @@ if __name__ == "__main__":
     with app.app_context():
         db.create_all()
     app.run(debug=True)
+
+from flask import send_from_directory
+
+@app.route("/admin/download/<int:event_id>")
+def download_image(event_id):
+    event = Event.query.get_or_404(event_id)
+    if event.image_filename:
+        directory = os.path.join(app.root_path, "static/images")
+        return send_from_directory(directory, event.image_filename, as_attachment=True)
+    return redirect(url_for("admin_review"))
+
+@app.route("/admin/upload_card/<int:event_id>", methods=["POST"])
+def upload_card(event_id):
+    event = Event.query.get_or_404(event_id)
+    card_file = request.files.get("card")
+    if card_file and card_file.filename != "":
+        os.makedirs("static/images/cards", exist_ok=True)
+        filename = f"card_{event.id}.jpg"
+        card_file.save(os.path.join("static/images/cards", filename))
+        event.image_filename = f"cards/{filename}"
+        db.session.commit()
+    return redirect(url_for("admin_review"))
